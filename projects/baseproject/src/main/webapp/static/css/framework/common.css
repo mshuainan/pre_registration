@@ -1,0 +1,234 @@
+/* 设置字体样式 解决datagrid排序图片错位问题 */ 
+body {
+	font-family:verdana;
+}
+
+/* 去掉页面的横向混动条 */
+html {
+	overflow-x: hidden;
+}
+
+/*全局 a 标签样式*/
+a{
+	text-decoration:none;
+}
+
+fieldset {
+	padding: 10px !important;
+}
+
+fieldset span.column {
+    position: relative;
+    border-bottom: 1px solid #d4d4d4;
+    margin-bottom: 10px;
+}
+
+legend span.current {
+    position: relative;
+    top: 0px;
+    display: inline-block;
+    color: #1da02b;
+    font-size: 12px;
+    font-weight: bold;
+    height: 22px;
+    line-height: 22px;
+    border-bottom: 2px solid #ff9d02;
+}
+
+.easyui-dialog label {
+    height: 22px;
+    line-height: 22px;
+}
+
+/* 微软雅黑 */
+/*
+* {
+	font-family: "Microsoft YaHei" ! important;
+}
+/*
+/* 弹出表单对话框easyui-dialog的附属样式*/
+.dialog {
+	padding: 10px 20px;
+}
+.dialog-close_ck {
+	font-size: 10px;
+}
+/* 弹出表单对话框的内容标题 */
+.dialog-ftitle {
+	width:350px;
+	font-size: 14px;
+	padding: 5px 0;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+/* 弹出表单的保存按钮 easyui-linkbutton 的附属样式*/
+.dialog-button-highlight, .dialog-button-save:hover {
+	/* color: #fff;
+	border-color: #1f637b;
+	background: #2984a4;
+	background: -webkit-linear-gradient(top,#2984a4 0,#24748f 100%);
+	background: -moz-linear-gradient(top,#2984a4 0,#24748f 100%);
+	background: -o-linear-gradient(top,#2984a4 0,#24748f 100%);
+	background: linear-gradient(to bottom,#2984a4 0,#24748f 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2984a4,endColorstr=#24748f,GradientType=0); */
+}
+a.dialog-button-save:hover{
+	background: #24748f;
+	filter: none;
+}
+
+/*必填项*/
+.required{ 
+	color:red;
+}
+
+/* ajax操作页面蒙灰效果, 全局使用 */
+/* ----- start ------*/
+.background {
+	display: block;
+	width: 100%;
+	height: 100%;
+	opacity: 0.4;
+	filter: alpha(opacity = 40);
+	background: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+}
+
+.progressBar {
+	background: #ffffff url('img/common/loading.gif') no-repeat scroll 5px center;
+	border: solid 2px #86A5AD;
+	display: block;
+	position: fixed;
+	top: 40%;
+	left: 40%;
+	padding: 10px 50px 10px 50px;
+	text-align: center;
+	line-height: 26px;
+	font-weight: bold;
+	z-index: 2001;
+}
+/* ----- end ------*/
+
+/* 高级查询条件*/
+.li-adaptive {
+	display: inline;
+	line-height: 30px;
+	height: auto;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+.div-search {
+	margin-top:2px;
+	margin-left:5px;
+	line-height: 35px;
+}
+
+#btnToolbar {
+	line-height: 35px;
+}
+
+/* span[class=textbox] {
+	height: 25px !important;
+}
+
+span[class="textbox textbox-focused"] {
+	height: 25px !important;
+}
+span[class="textbox combo"] {
+	height: 25px !important;
+}
+span[class="textbox combo textbox-focused"] {
+	height: 25px !important;
+}
+ */
+/*div 空行*/
+.div-br {
+	margin-top : 10px;
+}
+
+/* 用于增/改/查看的表单 */
+.normalForm {
+	padding:5px 5px 5px 5px;
+}
+.normalForm-td-label {
+	text-align:right;
+	width: 150px;
+	background: #eeeeee;
+	white-space:nowrap;
+	overflow:hidden;
+	word-break:break-all; 
+	height: 26px;
+	font-size: 12px;
+	padding-right: 10px;
+}
+.normalForm-td-view {
+	width: 241px;
+	height: 26px;
+	font-size: 12px;
+	padding-left: 10px;
+}
+
+.normalForm-td-view2 {
+	width: 171px;
+	height: 26px;
+	font-size: 12px
+}
+
+.normalForm-table {
+	border-collapse:collapse;
+	width: 100%;
+	border: 1px solid #D4D4D4;
+}
+
+.normalForm-table tr td {
+	border: 1px solid #D4D4D4;
+}
+
+/* 下拉框宽度  easyui-combobox的附属样式*/
+.select-width {
+	width:157px
+}
+
+.iframe-normal {
+	overflow-x: hidden;
+	width: 100%;
+	height: 99.5%;
+	border: 0;
+	scrolling: false
+}
+
+/* tab的按钮区域, 可设置按钮位置,按钮区域背景色等*/
+.tab-tool-btn {
+/* 	text-align:center; */
+}
+
+.hide{
+	display: none;
+}
+
+
+.easyui-tabs title {
+	margin-top: 5px;
+}
+/*
+span.datebox {
+	height: 25px !important;
+}
+
+ span.textbox {
+	height: 25px !important;
+} */
+
+.empty {
+    position: absolute;
+    color: #CFCFCF;
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
+    height: inherit;
+    top: 40%;
+    z-index: 1;
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elementspeed.mapper.mdata.dao.SysSchoolDao">
+	<resultMap id="BaseResultMap" type="com.elementspeed.mapper.mdata.entity.SysSchool">
+		<id column="PID" property="id"/>
+		<result column="DISTRICT_ID" property="districtId"/>
+		<result column="SCHOOL_CODE" property="schoolCode"/>
+		<result column="SCHOOL_NAME" property="schoolName"/>
+		<result column="SCHOOL_ADDRESS" property="schoolAddress"/>
+		<result column="CREATE_USER_ID" property="createUserId"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="LAST_MODIFY_USER_ID" property="lastModifyUserId"/>
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime"/>
+		<result column="DELETE_FLAG" property="deleteFlag"/>
+	</resultMap>
+	
+	<sql id="Base_cols">
+		PID,DISTRICT_ID,SCHOOL_CODE,SCHOOL_NAME,SCHOOL_ADDRESS,CREATE_USER_ID,CREATE_TIME,LAST_MODIFY_USER_ID,LAST_MODIFY_TIME,DELETE_FLAG
+	</sql>
+	
+	<select id="getAll" resultMap="BaseResultMap">
+  		SELECT * FROM SYS_SCHOOL WHERE DELETE_FLAG = 0 ORDER BY SCHOOL_CODE ASC
+  	</select>
+	
+	<insert id="insert" parameterType="com.elementspeed.mapper.mdata.entity.SysSchool" >
+		INSERT INTO SYS_SCHOOL (<include refid="Base_cols"/>)
+		VALUES (
+				#{id,jdbcType=VARCHAR},#{districtId,jdbcType=VARCHAR},#{schoolCode,jdbcType=VARCHAR},
+				#{schoolName,jdbcType=VARCHAR},#{schoolAddress,jdbcType=VARCHAR},#{createUserId,jdbcType=VARCHAR},
+				#{createTime,jdbcType=TIMESTAMP},#{lastModifyUserId,jdbcType=VARCHAR},#{lastModifyTime,jdbcType=TIMESTAMP},
+				#{deleteFlag,jdbcType=INTEGER}
+			  )
+	</insert>
+	
+	<update id="update">
+		UPDATE SYS_SCHOOL SET 
+			DISTRICT_ID = #{districtId, jdbcType=VARCHAR},
+			SCHOOL_CODE = #{schoolCode, jdbcType=VARCHAR},
+			SCHOOL_NAME = #{schoolName, jdbcType=VARCHAR},
+			SCHOOL_ADDRESS = #{schoolAddress, jdbcType=VARCHAR},
+			LAST_MODIFY_USER_ID = #{lastModifyUserId, jdbcType=VARCHAR},
+			LAST_MODIFY_TIME = #{lastModifyTime, jdbcType=TIMESTAMP},
+			DELETE_FLAG = #{deleteFlag, jdbcType=INTEGER} 
+		 WHERE PID = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

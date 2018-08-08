@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elementspeed.mapper.mdata.dao.SysDomicileDao" >
+	<resultMap id="BaseResultMap" type="com.elementspeed.mapper.mdata.entity.SysDomicile">
+		<id column="PID" property="id"/>
+		<result column="SCHOOL_ID" property="schoolId"/>
+		<result column="DISTRICT_ID" property="districtId"/>
+		<result column="DOMICILE_CODE" property="domicileCode"/>
+		<result column="DOMICILE_NAME" property="domicileName"/>
+		<result column="DOMICILE_ADDRESS" property="domicileAddress"/>
+		<result column="CREATE_USER_ID" property="createUserId"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="LAST_MODIFY_USER_ID" property="lastModifyUserId"/>
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime"/>
+		<result column="DELETE_FLAG" property="deleteFlag"/>
+		<result column="DOMICILE_TYPE" property="domicileType"/>
+	</resultMap>
+	
+	<sql id="Base_cols">
+		PID,SCHOOL_ID,DISTRICT_ID,DOMICILE_CODE,DOMICILE_NAME,DOMICILE_ADDRESS,CREATE_USER_ID,
+		CREATE_TIME,LAST_MODIFY_USER_ID,LAST_MODIFY_TIME,DELETE_FLAG,DOMICILE_TYPE
+	</sql>
+	
+	<!-- 根据类型获取居住地 -->
+    <select id="getByType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    	SELECT * FROM SYS_DOMICILE WHERE DOMICILE_TYPE = #{domicileType,jdbcType=INTEGER} AND DELETE_FLAG = 0
+    </select>
+    
+    <!--  -->
+    <select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    	SELECT * FROM SYS_DOMICILE WHERE PID = #{id,jdbcType=VARCHAR} AND DELETE_FLAG = 0
+    </select>
+    
+	<insert id="insert" parameterType="com.elementspeed.mapper.mdata.entity.SysDomicile" >
+		INSERT INTO SYS_DOMICILE (<include refid="Base_cols"/>)
+		VALUES (
+				#{id,jdbcType=VARCHAR},#{schoolId,jdbcType=VARCHAR},#{districtId,jdbcType=VARCHAR},
+				#{domicileCode,jdbcType=VARCHAR},#{domicileName,jdbcType=VARCHAR},#{domicileAddress,jdbcType=VARCHAR},
+				#{createUserId,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},#{lastModifyUserId,jdbcType=VARCHAR},
+				#{lastModifyTime,jdbcType=TIMESTAMP},#{deleteFlag,jdbcType=INTEGER},#{domicileType,jdbcType=INTEGER}
+				)
+	</insert>
+	
+	<update id="update">
+		UPDATE SYS_DOMICILE SET 
+			SCHOOL_ID = #{schoolId, jdbcType=VARCHAR},
+			DISTRICT_ID = #{districtId, jdbcType=VARCHAR},
+			DOMICILE_CODE = #{domicileCode, jdbcType=VARCHAR},
+			DOMICILE_NAME = #{domicileName, jdbcType=VARCHAR},
+			DOMICILE_ADDRESS = #{domicileAddress, jdbcType=VARCHAR},
+			LAST_MODIFY_USER_ID = #{lastModifyUserId, jdbcType=VARCHAR},
+			LAST_MODIFY_TIME = #{lastModifyTime, jdbcType=TIMESTAMP},
+			DELETE_FLAG = #{deleteFlag, jdbcType=INTEGER},
+			DOMICILE_TYPE = #{domicileType, jdbcType=INTEGER} 
+		 WHERE PID = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="getAll" resultMap="BaseResultMap">
+  		SELECT * FROM SYS_DOMICILE WHERE DELETE_FLAG = 0 ORDER BY DOMICILE_CODE ASC
+  	</select>
+  	
+</mapper>

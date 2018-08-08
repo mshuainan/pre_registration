@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root>
+	<importTemplates>
+		<importTemplate bindId="EXCEL_IMPORT_PURCHASE_ORDER_TEMPLATE" path="excel/import/DataTransfersDefineImportOrder.xml" />
+		<importTemplate bindId="EXCEL_EXPORT_PURCHASE_ORDER_TEMPLATE" path="excel/export/DataTransferDefineExportOrder.xml" />
+		
+		<importTemplate bindId="EXCEL_IMPORT_FINPAYABLE_TEMPLATE" path="excel/import/DataTransferDefineImportFinPayable.xml" />
+		
+	</importTemplates>
+</root>

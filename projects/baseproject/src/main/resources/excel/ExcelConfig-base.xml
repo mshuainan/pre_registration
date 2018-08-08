@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root>
+	<importTemplates>
+		<importTemplate bindId="EXCEL_IMPORT_DICTITEM_TEMPLATE" path="excel/import/dictItem.xml" />
+		<importTemplate bindId="EXCEL_IMPORT_MASTERDATA_TEMPLATE" path="excel/import/masterData.xml"/>
+	</importTemplates>
+</root>

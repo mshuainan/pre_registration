@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elementspeed.mapper.system.dao.SysPreRegisterDao">
+	<resultMap id="BaseResultMap" type="com.elementspeed.mapper.system.entity.SysPreRegister">
+		<id column="PID" property="id" />
+		<result column="PRE_ORDER_NO" property="preOrderNo" />
+		<result column="STUDENT_NAME" property="studentName" />
+		<result column="STUDENT_GENDER" property="studentGender" />
+		<result column="STUDENT_IDENTITY" property="studentIdentity" />
+		<result column="BIRTH_DATE" property="birthDate" />
+		<result column="FATHER_NAME" property="fatherName" />
+		<result column="FATHER_CONTACT_INFO" property="fatherContactInfo" />
+		<result column="FATHER_IDENTITY" property="fatherIdentity" />
+		<result column="MATHER_NAME" property="matherName" />
+		<result column="MATHER_CONTACT_INFO" property="matherContactInfo" />
+		<result column="MATHER_IDENTITY" property="matherIdentity" />
+		<result column="DOMICILE_ID" property="domicileId" />
+		<result column="DOMICILE_CODE" property="domicileCode" />
+		<result column="DOMICILE_NAME" property="domicileName" />
+		<result column="DOMICILE_ADDRESS" property="domicileAddress" />
+		<result column="PROPERTY_OWNER" property="propertyOwner" />
+		<result column="PROPERTY_SIGN_DATE" property="propertySignDate" />
+		<result column="PROPERTY_OWNER_NAME" property="propertyOwnerName" />
+		<result column="PROPERTY_CODE" property="propertyCode" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="LAST_MODIFY_USER_ID" property="lastModifyUserId" />
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+		<result column="DELETE_FLAG" property="deleteFlag" />
+		<result column="STUDENT_FACE_URL" property="studentFaceUrl" />
+		<result column="STUDENT_FACE_NAME" property="studentFaceName" />
+		<result column="PROPERTY_FILE_URL" property="propertyFileUrl" />
+		<result column="PROPERTY_FILE_NAME" property="propertyFileName" />
+		<result column="DISTRICT_CODE" property="districtCode" />
+		<result column="DISTRICT_NAME" property="districtName" />
+		<result column="SCHOOL_CODE" property="schoolCode" />
+		<result column="SCHOOL_NAME" property="schoolName" />
+	</resultMap>
+
+	<sql id="Base_cols">
+		PID,PRE_ORDER_NO,STUDENT_NAME,STUDENT_GENDER,STUDENT_IDENTITY,BIRTH_DATE,FATHER_NAME,FATHER_CONTACT_INFO,
+		FATHER_IDENTITY,MATHER_NAME,MATHER_CONTACT_INFO,MATHER_IDENTITY,DOMICILE_ID,DOMICILE_CODE,DOMICILE_NAME,
+		DOMICILE_ADDRESS,PROPERTY_OWNER,PROPERTY_SIGN_DATE,PROPERTY_OWNER_NAME,PROPERTY_CODE,CREATE_USER_ID,
+		CREATE_TIME,LAST_MODIFY_USER_ID,LAST_MODIFY_TIME,DELETE_FLAG,STUDENT_FACE_URL,STUDENT_FACE_NAME,
+		PROPERTY_FILE_URL,PROPERTY_FILE_NAME,SCHOOL_CODE,SCHOOL_NAME,DISTRICT_CODE,DISTRICT_NAME
+	</sql>
+	
+	<!-- 查询列表信息 -->
+	<select id="query" parameterType="com.elementspeed.mapper.system.entity.SysPreRegister" resultMap="BaseResultMap">
+  		SELECT * FROM SYS_PRE_REGISTER WHERE DELETE_FLAG = 0
+			<if test="studentGender != null ">
+				AND STUDENT_GENDER = #{studentGender, jdbcType=INTEGER}
+			</if>
+			<if test="studentIdentity != null and studentIdentity != ''">
+				AND STUDENT_IDENTITY LIKE CONCAT('%', #{studentIdentity, jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="studentName != null and studentName != ''">
+				AND STUDENT_NAME LIKE CONCAT('%', #{studentName, jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="fatherName != null and fatherName != ''">
+				AND FATHER_NAME LIKE CONCAT('%', #{fatherName, jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="matherName != null and matherName != ''">
+				AND MATHER_NAME LIKE CONCAT('%', #{matherName, jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="districtCode != null and districtCode != ''">
+				AND DISTRICT_CODE  = #{districtCode, jdbcType=VARCHAR}
+			</if>
+			<if test="schoolCode != null and schoolCode != ''">
+				AND SCHOOL_CODE = #{schoolCode, jdbcType=VARCHAR}
+			</if>
+		<choose>
+			<when test="orderSql != null and orderSql != ''">
+				ORDER BY ${orderSql}
+			</when>
+			<otherwise>
+				ORDER BY PRE_ORDER_NO ASC
+			</otherwise>
+		</choose>
+  	</select>
+  	
+  	<!--  -->
+	<select id="findById" parameterType="string" resultMap="BaseResultMap">
+  		SELECT T.* FROM SYS_PRE_REGISTER T WHERE T.PID = #{id,jdbcType=VARCHAR}
+  	</select>
+  	
+  	<!-- 根据学生身份证查找记录 -->
+  	<select id="findByStuIdCard" parameterType="string" resultMap="BaseResultMap">
+  		SELECT T.* FROM SYS_PRE_REGISTER T WHERE T.STUDENT_IDENTITY = #{idCard,jdbcType=VARCHAR}
+  	</select>
+  	
+	<insert id="insert" parameterType="com.elementspeed.mapper.system.entity.SysPreRegister">
+		INSERT INTO SYS_PRE_REGISTER (<include refid="Base_cols" />)
+		VALUES
+			(
+				#{id,jdbcType=VARCHAR},#{preOrderNo,jdbcType=VARCHAR},#{studentName,jdbcType=VARCHAR},#{studentGender,jdbcType=INTEGER},
+				#{studentIdentity,jdbcType=TIMESTAMP},#{birthDate,jdbcType=VARCHAR},#{fatherName,jdbcType=VARCHAR},
+				#{fatherContactInfo,jdbcType=VARCHAR},#{fatherIdentity,jdbcType=VARCHAR},#{matherName,jdbcType=VARCHAR},
+				#{matherContactInfo,jdbcType=VARCHAR},#{matherIdentity,jdbcType=VARCHAR},#{domicileId,jdbcType=VARCHAR},
+				#{domicileCode,jdbcType=VARCHAR},#{domicileName,jdbcType=VARCHAR},#{domicileAddress,jdbcType=VARCHAR},
+				#{propertyOwner,jdbcType=INTEGER},#{propertySignDate,jdbcType=TIMESTAMP},#{propertyOwnerName,jdbcType=VARCHAR},
+				#{propertyCode,jdbcType=VARCHAR},#{createUserId,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},
+				#{lastModifyUserId,jdbcType=VARCHAR},#{lastModifyTime,jdbcType=TIMESTAMP},#{deleteFlag,jdbcType=INTEGER},
+				#{studentFaceUrl,jdbcType=VARCHAR},#{studentFaceName,jdbcType=VARCHAR},#{propertyFileUrl,jdbcType=VARCHAR},
+				#{propertyFileName,jdbcType=VARCHAR},#{schoolCode,jdbcType=VARCHAR},#{schoolName,jdbcType=VARCHAR},
+				#{districtCode,jdbcType=VARCHAR},#{districtName,jdbcType=VARCHAR}
+			)
+	</insert>
+
+	<update id="update">
+		UPDATE SYS_PRE_REGISTER SET
+			PRE_ORDER_NO = #{preOrderNo, jdbcType=VARCHAR},
+			STUDENT_NAME = #{studentName, jdbcType=VARCHAR},
+			STUDENT_GENDER = #{studentGender, jdbcType=INTEGER},
+			STUDENT_IDENTITY = #{studentIdentity, jdbcType=TIMESTAMP},
+			BIRTH_DATE = #{birthDate, jdbcType=VARCHAR},
+			FATHER_NAME = #{fatherName, jdbcType=VARCHAR},
+			FATHER_CONTACT_INFO = #{fatherContactInfo, jdbcType=VARCHAR},
+			FATHER_IDENTITY = #{fatherIdentity, jdbcType=VARCHAR},
+			MATHER_NAME = #{matherName, jdbcType=VARCHAR},
+			MATHER_CONTACT_INFO = #{matherContactInfo, jdbcType=VARCHAR},
+			MATHER_IDENTITY = #{matherIdentity, jdbcType=VARCHAR},
+			DOMICILE_ID = #{domicileId, jdbcType=VARCHAR},
+			DOMICILE_CODE = #{domicileCode, jdbcType=VARCHAR},
+			DOMICILE_NAME = #{domicileName, jdbcType=VARCHAR},
+			DOMICILE_ADDRESS = #{domicileAddress, jdbcType=VARCHAR},
+			PROPERTY_OWNER = #{propertyOwner, jdbcType=INTEGER},
+			PROPERTY_SIGN_DATE = #{propertySignDate, jdbcType=TIMESTAMP},
+			PROPERTY_OWNER_NAME = #{propertyOwnerName, jdbcType=VARCHAR},
+			PROPERTY_CODE = #{propertyCode, jdbcType=VARCHAR},
+			CREATE_USER_ID = #{createUserId, jdbcType=VARCHAR},
+			CREATE_TIME = #{createTime, jdbcType=TIMESTAMP},
+			LAST_MODIFY_USER_ID = #{lastModifyUserId, jdbcType=VARCHAR},
+			LAST_MODIFY_TIME = #{lastModifyTime, jdbcType=TIMESTAMP},
+			DELETE_FLAG = #{deleteFlag, jdbcType=INTEGER},
+			STUDENT_FACE_URL = #{studentFaceUrl,jdbcType=VARCHAR},
+			STUDENT_FACE_NAME = #{studentFaceName,jdbcType=VARCHAR},
+			PROPERTY_FILE_URL = #{propertyFileUrl,jdbcType=VARCHAR},
+			PROPERTY_FILE_NAME = #{propertyFileName,jdbcType=VARCHAR},
+			SCHOOL_CODE = #{schoolCode,jdbcType=VARCHAR},
+			SCHOOL_NAME = #{schoolName,jdbcType=VARCHAR},
+			DISTRICT_CODE = #{districtCode,jdbcType=VARCHAR},
+			DISTRICT_NAME = #{districtName,jdbcType=VARCHAR}
+		 WHERE PID = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

@@ -1,0 +1,46 @@
+
+body {
+	margin: 0px; padding: 0px;
+}
+.container {
+	margin: 0px auto; width: 100%; text-align: center;
+}
+#big-logo .logo1 {
+	margin: 0px auto; top: 5px; display: inline-block; position: relative;
+}
+#big-logo .old {
+	top: 0px; right: 0px; display: inline-block; position: absolute;
+}
+#we {
+	line-height: 1.2; font-size: 22px; margin-top: 20px;
+}
+#please {
+	font-size: 20px; font-weight: bold; margin-top: 20px;
+}
+#browsers {
+	font-size: 15px;
+	color: #808080;
+	margin:0 auto;
+	width: 400px; 
+}
+#browsers a {
+	background: url("img/common/browser.jpg") no-repeat; margin: 40px; width: 91px; height: 23px; color: rgb(88, 149, 78); padding-top: 81px; text-decoration: none; display: inline-block;
+}
+#browsers a:hover {
+	text-decoration: underline;
+}
+#browsers .br1 {
+	background-position: 15px 1px;
+}
+#browsers .br2 {
+	background-position: -80px 1px;
+}
+#browsers .br3 {
+	background-position: -170px 1px;
+}
+#browsers .br4 {
+	background-position: -260px 1px;
+}
+#browsers ul li {
+	float: left; list-style: none;
+}

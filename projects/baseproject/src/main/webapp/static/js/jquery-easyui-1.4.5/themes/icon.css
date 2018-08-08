@@ -1,0 +1,171 @@
+.icon-user {
+	background: url("icons/user.png") no-repeat center;
+}
+
+.icon-logout {
+	background: url("icons/logout.png") no-repeat center;
+}
+
+.icon-key {
+	background: url("icons/key.png") no-repeat center;
+}
+
+.icon-blank{
+	background:url('icons/blank.gif') no-repeat center;
+}
+.icon-check{
+	background:url('icons/check.png') no-repeat center;
+}
+.icon-add{
+	background:url('icons/edit_add.png') no-repeat center;
+}
+.icon-view{
+	background:url('icons/view.png') no-repeat center;
+}
+.icon-edit{
+	background:url('icons/pencil.png') no-repeat center;
+}
+.icon-clear{
+	background:url('icons/clear.png') no-repeat center;
+}
+.icon-remove{
+	background:url('icons/edit_remove.png') no-repeat center;
+}
+.icon-arrow_down {
+	background: url('icons/arrow_down.png') no-repeat center;
+}
+.icon-arrow_up {
+	background: url('icons/arrow_up.png') no-repeat center
+		center;
+}
+.icon-save{
+	background:url('icons/filesave.png') no-repeat center;
+}
+.icon-cut{
+	background:url('icons/cut.png') no-repeat center;
+}
+.icon-ok2{
+	background:url('icons/ok2.png') no-repeat center;
+}
+.icon-ok{
+	background:url('icons/ok.png') no-repeat center;
+}
+.icon-no{
+	background:url('icons/no.png') no-repeat center;
+}
+.icon-no2{
+	background:url('icons/no2.png') no-repeat center;
+}
+.icon-cancel{
+	background:url('icons/cancel.png') no-repeat center;
+}
+.icon-reload{
+	background:url('icons/reload.png') no-repeat center;
+}
+.icon-search{
+	background:url('icons/search.png') no-repeat center;
+}
+.icon-print{
+	background:url('icons/print.png') no-repeat center;
+}
+.icon-help{
+	background:url('icons/help.png') no-repeat center;
+}
+.icon-undo{
+	background:url('icons/undo.png') no-repeat center;
+}
+.icon-redo{
+	background:url('icons/redo.png') no-repeat center;
+}
+.icon-back{
+	background:url('icons/back.png') no-repeat center;
+}
+.icon-next {
+	background:url('icons/next.png') no-repeat center;
+}
+.icon-sum{
+	background:url('icons/sum.png') no-repeat center;
+}
+.icon-tip{
+	background:url('icons/tip.png') no-repeat center;
+}
+.icon-filter{
+	background:url('icons/filter.png') no-repeat center;
+}
+.icon-man{
+	background:url('icons/man.png') no-repeat center;
+}
+.icon-lock{
+	background:url('icons/lock.png') no-repeat center;
+}
+.icon-unlock{
+	background:url('icons/hmenu-unlock.png') no-repeat center;
+}
+.icon-more{
+	background:url('icons/more.png') no-repeat center;
+}
+.icon-list{
+	background:url('icons/list.png') no-repeat center;
+}
+.icon-mini-add{
+	background:url('icons/mini_add.png') no-repeat center;
+}
+.icon-mini-edit{
+	background:url('icons/mini_edit.png') no-repeat center;
+}
+.icon-mini-refresh{
+	background:url('icons/mini_refresh.png') no-repeat center;
+}
+
+.icon-large-picture{
+	background:url('icons/large_picture.png') no-repeat center;
+}
+.icon-large-clipart{
+	background:url('icons/large_clipart.png') no-repeat center;
+}
+.icon-large-shapes{
+	background:url('icons/large_shapes.png') no-repeat center;
+}
+.icon-large-smartart{
+	background:url('icons/large_smartart.png') no-repeat center;
+}
+.icon-large-chart{
+	background:url('icons/large_chart.png') no-repeat center;
+}
+.icon-form{
+	background:url('icons/application.png') no-repeat center;
+}
+.icon-tab-close-self{
+	background:url('icons/application.png') no-repeat center;
+}
+.icon-tab-close-other{
+	background:url('icons/application_double.png') no-repeat center;
+}
+.icon-tab-close-all{
+	background:url('icons/application_cascade.png') no-repeat center;
+}
+.icon-disconnect {
+	background:url('icons/disconnect.png') no-repeat center;
+}
+.icon-connect {
+	background:url('icons/connect.png') no-repeat center;
+}
+.icon-import {
+	background:url('icons/imp.png') no-repeat center;
+}
+.icon-export {
+	background:url('icons/exp.png') no-repeat center;
+}
+.icon-gantt-chart {
+	background:url('icons/Gantt-Chart.gif') no-repeat center;
+}
+.icon-alert-horn {
+	background:url('icons/alert_horn.png') no-repeat center;
+}
+.icon-syn {
+	background:url('icons/syn.png') no-repeat center;
+}
+
+/** information */
+.icon-information-import{background:url('icons/information_import.png') no-repeat center center;}
+.icon-information{background:url('icons/information.png') no-repeat center center;}

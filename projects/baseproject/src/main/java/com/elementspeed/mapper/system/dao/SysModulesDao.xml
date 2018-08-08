@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.elementspeed.mapper.system.dao.SysModulesDao">
+	<resultMap id="sysModulesMapper" type="com.elementspeed.mapper.system.entity.SysModules">
+	    <id column="PID" property="id" />
+	    <result column="PARENT_ID" property="parentId" />
+	    <result column="CODE" property="code" />
+	    <result column="I18N_TEXT" property="i18nText" />
+	    <result column="TYPE" property="type" />
+	    <result column="URL" property="url" />
+	    <result column="MENU_SN" property="menuSn" />
+	    <result column="ICON" property="icon" />
+	    <result column="RENDERING_PARAM" property="renderingParam" />
+	    <result column="IS_LEAF" property="isLeaf" />
+	    <result column="MOBILE_FLAG" property="mobileFlag" />
+	    <result column="DELETE_FLAG" property="deleteFlag" />    
+	</resultMap>
+	
+	<sql id="BaseCol">
+	   M.PID AS ID, M.I18N_TEXT AS I18NTEXT,M.CODE AS CODE,M.URL AS URL,
+	   M.PARENT_ID AS PARENTID,M.TYPE AS TYPE,M.MENU_SN AS MENUSN, ICON AS ICON, 
+	   M.RENDERING_PARAM AS RENDERINGPARAM, M.IS_LEAF,M.DELETE_FLAG AS DELETEFLAG
+	</sql>
+
+  	<select id="getAll" parameterType="list" resultType="com.elementspeed.mapper.system.entity.SysModulesDto">
+  		SELECT DISTINCT M.PID AS ID, M.I18N_TEXT AS I18NTEXT,  
+  			M.PARENT_ID AS PARENTID , M.URL,M.MENU_SN , M.ICON AS ICON
+   		FROM SYS_MODULES M WHERE DELETE_FLAG = 0
+		 	ORDER BY M.MENU_SN ASC
+  	</select>
+
+</mapper>

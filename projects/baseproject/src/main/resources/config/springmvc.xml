@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		">
+ 	<!-- 扫描带有 org.springframework.stereotype.Controller 注解的类-->
+	<context:component-scan base-package="com.elementspeed" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	</context:component-scan>
+	<!-- 自定义全局异常捕获处理类 -->
+	<bean id="handlerExceptionResolver" class="com.elementspeed.system.exception.MyExceptionHandler"/>
+	<mvc:annotation-driven>
+     	<mvc:message-converters register-defaults="true">
+	    	<ref bean="stringHttpMessageConverter"/>
+	    	<!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
+			<ref bean="jsonHttpMessageConverter"/>
+   		</mvc:message-converters>
+     </mvc:annotation-driven>
+	<!-- 静态资源(js/image/css)的访问, 不经过dispatcher转发 -->
+	<mvc:resources location="/static/" mapping="/static/**" />
+	<!-- <mvc:resources location="/css/" mapping="/css/**" /> -->
+	<!-- <mvc:resources location="/img/" mapping="/img/**" /> -->
+    <!-- <mvc:view-controller path="/" view-name="redirect:/portalroot/index"/> -->
+    <mvc:view-controller path="/" view-name="redirect:/portalroot/introduce.jsp"/>
+    <!-- <mvc:view-controller path="/fromEmail/**" view-name="redirect:/system/toLogin"/> -->
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />  
+        <property name="prefix" value="/WEB-INF/pages/" />  
+        <property name="suffix" value=".jsp" />  
+    </bean>
+    
+	<!-- 转换器配置:只有配置好了转换器才能进行类与JSON和XML的转换 -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	    <property name="webBindingInitializer">  
+	        <bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">  
+	            <property name="conversionService" ref="conversionService" />  
+	        </bean>  
+	    </property>
+        <property name="messageConverters">
+            <list>
+                <!-- String 转换器 -->
+                <ref bean="stringHttpMessageConverter"/>
+                <!-- JSON 转换器 -->
+                <ref bean="jsonHttpMessageConverter"/>
+                <!-- XML 转换器 -->
+                <!-- <ref bean="marshallingHttpMessageConverter"/> -->
+            </list>
+        </property>
+	</bean>
+    <bean id="conversionService" class="org.springframework.format.support.DefaultFormattingConversionService"/>  
+    <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+    	<constructor-arg value="UTF-8" index="0"></constructor-arg><!-- 避免出现乱码 -->
+    	<property name="supportedMediaTypes">
+    		<list>
+    			<value>text/plain;charset=UTF-8</value>
+    		</list>
+    	</property>
+    </bean>
+    <bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    	<property name="prettyPrint" value="true" />
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+    </bean>
+    <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->  
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="UTF-8"/>  
+        <!-- 指定所上传文件的总大小不能超过10000KB（10M）。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和   -->
+        <!-- <property name="maxUploadSize" value="30000000"/> -->
+        <!-- resolveLazily属性启用是为了推迟文件解析，以便在Controller 中捕获文件大小异常   -->
+        <!-- <property name="resolveLazily" value="true"/> --> 
+    </bean>
+	<task:scheduler id="scheduler" pool-size="10" />  
+    <task:executor id="executor" keep-alive="3600" pool-size="100-200" 
+    	queue-capacity="500" rejection-policy="CALLER_RUNS" /> 
+    <task:annotation-driven executor="executor" scheduler="scheduler" />
+</beans>

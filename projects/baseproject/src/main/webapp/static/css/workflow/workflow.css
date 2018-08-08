@@ -1,0 +1,33 @@
+body{margin:0;}
+
+.context-menu {
+	position:absolute;
+	width:150px;
+	background-color:#eee;
+	border:1px solid #bbb;
+	border-radius:3px;
+	font-size:12px;
+}
+.context-menu ul{
+	padding:5px;
+	margin:0;
+}
+.context-menu ul li{
+	list-style:none;
+}
+.context-menu ul li a{
+	display:block;
+	text-decoration:none;
+	color:#555;
+	line-height:2em;
+	padding:0 0 0 6px;
+}
+.context-menu ul li a:hover{
+	color:#000;
+	background-color:#ccc;
+}
+.warningMessage{
+	color: #24a3e0;
+	font-size: 12px;
+	font-weight: bold;
+}

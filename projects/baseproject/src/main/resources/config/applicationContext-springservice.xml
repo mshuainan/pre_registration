@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        
+    <bean id="ctx" class="com.elementspeed.framework.common.util.SpringContextUtil"/>
+	<bean id="sysSchoolService" class="com.elementspeed.system.mdata.service.imp.SysSchoolServiceImpl"/>
+	<bean id="sysDistrictService" class="com.elementspeed.system.mdata.service.imp.SysDistrictServiceImpl"/>
+	<bean id="sysDomicileService" class="com.elementspeed.system.mdata.service.imp.SysDomicileServiceImpl"/>
+</beans>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<DataTransfers>
+	<DataTransfer taskId="exportRegisterInfo" description="报名信息" sheet="0" startCol="A">	
+		<columns>
+			<column outputColumn="preOrderNo" columnCaption="报名号" columnWidth="18"/>
+			<column outputColumn="studentName" columnCaption="学生姓名" columnWidth="12"/>
+			<column outputColumn="birthDate" columnCaption="学生出生日期" columnWidth="15" type="Date" format="yyyy-MM-dd" />
+			<column outputColumn="studentGenderStr" columnCaption="性别" columnWidth="12"/>
+			<column outputColumn="studentIdentity" columnCaption="身份证号" columnWidth="25"/>
+			<column outputColumn="schoolName" columnCaption="学校" columnWidth="25"/>
+			<column outputColumn="fatherName" columnCaption="父亲姓名" columnWidth="12"/>
+			<column outputColumn="fatherContactInfo" columnCaption="父亲联系方式" columnWidth="18"/>
+			<column outputColumn="fatherIdentity" columnCaption="身份证号" columnWidth="25"/>
+			<column outputColumn="matherName" columnCaption="母亲姓名" columnWidth="12"/>
+			<column outputColumn="matherContactInfo" columnCaption="母亲联系方式" columnWidth="18"/>
+			<column outputColumn="matherIdentity" columnCaption="身份证号" columnWidth="25"/>
+			<column outputColumn="domicileName" columnCaption="居住地名称" columnWidth="20"/>
+			<column outputColumn="domicileAddress" columnCaption="居住地址" columnWidth="40"/>
+			<column outputColumn="propertyOwnerStr" columnCaption="房产所有人" columnWidth="12"/>
+			<column outputColumn="propertySignDate" columnCaption="房产证签发日期 " columnWidth="18" type="Date" format="yyyy-MM-dd"/>
+			<column outputColumn="propertyOwnerName" columnCaption="房产所有人姓名" columnWidth="18"/>
+			<column outputColumn="propertyCode" columnCaption="房产证编号" columnWidth="20"/>
+		</columns>
+	</DataTransfer>
+</DataTransfers>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 通用附件管理 -->
+<mapper namespace="com.elementspeed.mapper.system.dao.SysFileDao">
+	<resultMap id="sysFileMapper" type="com.elementspeed.mapper.system.entity.SysFile">
+		<id column="PID" property="id"/>
+		<result column="TABLE_NAME" property="tableName"/>
+		<result column="TL_ID" property="tlId"/>
+		<result column="BUS_ACTION" property="busAction"/>
+		<result column="FILE_NAME" property="fileName"/>
+		<result column="SERVER_FILE_NAME" property="serverFileName"/>
+		<result column="URL" property="url"/>
+		<result column="BEGIN_DATE" property="beginDate"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="REMARKS" property="remarks"/>
+		<result column="CREATE_USER_ID" property="createUserId"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="LAST_MODIFY_USER_ID" property="lastModifyUserId"/>
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime"/>
+		<result column="DELETE_FLAG" property="deleteFlag"/>
+		<result column="File_size" property="fileSize"/>
+		
+		<result column="SRC_LOCATION" property="srcLocation"/>
+		<result column="SRC_KEY" property="srcKey"/>
+	</resultMap>
+
+	<sql id="baseQuery">
+		select t.* from SYS_FILES t where t.DELETE_FLAG = 0
+	</sql>
+
+  	<select id="getById" parameterType="string" resultMap="sysFileMapper">
+  		<include refid="baseQuery"></include>
+  		and t.PID = #{id}
+  	</select>
+  	
+  	<select id="getByUnionKey" resultMap="sysFileMapper">
+  		<include refid="baseQuery"></include>
+  		and t.TABLE_NAME = #{tableName}
+  		and t.TL_ID = #{tlId}
+  		and t.BUS_ACTION = #{busAction}
+  	</select>
+  	<select id="getIdListByUnionKey" resultType="java.lang.String">
+  		select t.pid from SYS_FILES t
+  		where t.TABLE_NAME = #{tableName}
+  		and t.TL_ID = #{tlId}
+  		and t.BUS_ACTION = #{busAction}
+  	</select>
+  	
+  	
+  	<select id="getListByUnionKey" resultMap="sysFileMapper">
+  		<include refid="baseQuery"></include>
+  		and t.TABLE_NAME = #{tableName}
+  		and t.TL_ID = #{tlId}
+  		and t.BUS_ACTION = #{busAction}
+  		
+  		<if test="url != null and url != ''">
+  		and t.URL = #{url}
+  		</if>
+  		
+  	</select>
+  	
+  	<insert id="insert" parameterType="com.elementspeed.mapper.system.entity.SysFile">
+  		insert into SYS_FILES (
+	  		PID, TABLE_NAME, TL_ID, 
+	  		BUS_ACTION, FILE_NAME, SERVER_FILE_NAME,
+	  		URL, BEGIN_DATE, END_DATE,
+	  		REMARKS,
+	  		CREATE_USER_ID,CREATE_TIME,LAST_MODIFY_USER_ID,LAST_MODIFY_TIME,DELETE_FLAG,FILE_SIZE,SRC_LOCATION,SRC_KEY
+	  	) 
+  		values (
+	  		#{id,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR},#{tlId,jdbcType=VARCHAR},
+	  		#{busAction,jdbcType=VARCHAR},#{fileName,jdbcType=VARCHAR},#{serverFileName,jdbcType=VARCHAR},
+	  		#{url,jdbcType=VARCHAR},#{beginDate,jdbcType=VARCHAR},#{endDate,jdbcType=VARCHAR},
+	  		#{remarks,jdbcType=VARCHAR},
+	  		#{createUserId,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},#{lastModifyUserId,jdbcType=VARCHAR},#{lastModifyTime,jdbcType=TIMESTAMP},#{deleteFlag,jdbcType=INTEGER},
+	  		#{fileSize,jdbcType=INTEGER},#{srcLocation,jdbcType=VARCHAR},#{srcKey,jdbcType=VARCHAR}
+  		)
+  	</insert>
+
+  	<delete id="physicalDelete">
+  		delete from SYS_FILES where PID = #{id}
+  	</delete>
+  	
+  	<update id="delete">
+  		update SYS_FILES set DELETE_FLAG = 1 where PID = #{id}
+  	</update>
+  	
+  	<delete id="physicalDeleteByUnionKey">
+  		delete from SYS_FILES t where DELETE_FLAG = 0
+  		and t.TABLE_NAME = #{tableName}
+  		and t.TL_ID = #{tlId}
+  		and t.BUS_ACTION = #{busAction}
+  	</delete>
+  	
+  	<update id="deleteByUnionKey">
+  		update SYS_FILES t set DELETE_FLAG = 1 
+  		where
+  			t.TABLE_NAME = #{tableName}
+  			and t.TL_ID = #{tlId}
+  			and t.BUS_ACTION = #{busAction}
+  	</update>
+  	
+  	<update id="uploadSysFile">
+  		update SYS_FILES  set TL_ID = #{tlId} 
+  		
+  		where 
+  		TABLE_NAME = #{tableName} 
+  		AND BUS_ACTION = #{busAction} AND 
+  		PID IN
+  		<foreach collection="list" item="id" index="index" open="(" separator="," close=")">
+  			#{id}
+  		</foreach>
+  			
+  	</update>
+  	
+  	<select id="getFileByTlId" resultMap="sysFileMapper">
+  	    <include refid="baseQuery"></include>
+  	     and  t.TL_ID = #{tlId}
+  	</select>
+  	
+  	<select id="getIdListByUnionKeyNotDelete" resultType="java.lang.String">
+  		select t.pid from SYS_FILES t
+  		where t.TABLE_NAME = #{tableName}
+  		and t.TL_ID = #{tlId}
+  		and t.BUS_ACTION = #{busAction} and t.DELETE_FLAG = 0
+  	</select>
+  	
+  	<select id="query" parameterType="com.elementspeed.mapper.system.entity.SysFile" resultMap="sysFileMapper">
+  	    select * from SYS_FILES t where DELETE_FLAG = 0
+  	    <if test="tableName != null and tableName !=''">
+  	        and t.TABLE_NAME = #{tableName , jdbcType = VARCHAR}
+  	    </if>
+  	    <if test="tlId != null and tlId !=''">
+  	        and t.TL_ID = #{tlId , jdbcType = VARCHAR}
+  	    </if>
+  	    <if test="busAction !=null and busAction !=''">
+  	       and t.BUS_ACTION = #{busAction, jdbcType = VARCHAR}
+  	    </if>
+  	</select>
+  	
+  	<update id="updateFileDeleteflag" parameterType="java.lang.String">
+  	  update sys_files set DELETE_FLAG=1  where TABLE_NAME=#{tableName} and TL_ID=#{tlId} and SRC_LOCATION=#{srcLocation} and SRC_KEY=#{srcKey}
+  	  
+  	</update>
+  	
+  	  	<select id="findByfile" resultMap="sysFileMapper">
+  		select * from  sys_files where TABLE_NAME=#{tableName} and TL_ID=#{tlId}
+  	</select>
+</mapper>

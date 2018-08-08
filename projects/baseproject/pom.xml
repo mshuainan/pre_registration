@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+		<groupId>com.masn</groupId>
+		<artifactId>preregistration-parent</artifactId>
+		<version>1.0</version>
+		<relativePath>../../parent/</relativePath>
+	</parent>
+  <artifactId>preregistration-baseproject</artifactId>
+  <version>${preregistration.version}</version>
+  <packaging>war</packaging>
+  <name>PreRegistration :: Baseproject</name>
+  <dependencies>
+   
+  	<dependency>
+  		<groupId>com.masn</groupId>
+  		<artifactId>preregistration-core</artifactId>
+  		<version>${preregistration.version}</version>
+  	</dependency>	
+  	
+  	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+  	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<!-- connection pool -->
+	<dependency>
+		<groupId>org.apache.tomcat</groupId>
+		<artifactId>tomcat-jdbc</artifactId>
+		<scope>compile</scope>
+	</dependency>
+	<!-- commons log -->
+    <dependency>
+		<groupId>commons-fileupload</groupId>
+		<artifactId>commons-fileupload</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+	</dependency>
+	 <!-- jetty 开发，测试使用-->
+	<dependency>
+		<groupId>org.eclipse.jetty.aggregate</groupId>
+		<artifactId>jetty-webapp</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.eclipse.jetty</groupId>
+		<artifactId>jetty-jsp</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.masn</groupId>
+		<artifactId>preregistration-core</artifactId>
+		<classifier>tests</classifier>
+		<scope>test</scope>
+		<version>${preregistration.version}</version>
+	</dependency>
+	<!-- aop -->
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjrt</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.github.jsqlparser</groupId>
+		<artifactId>jsqlparser</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.im4java</groupId>
+		<artifactId>im4java</artifactId>
+		<version>1.4.0</version>
+	</dependency>
+  </dependencies>
+  <build>
+        <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			
+			<!-- js,css代码压缩 -->
+			<plugin>
+				<!-- YUI Compressor Maven压缩插件 -->
+	            <groupId>net.alchim31.maven</groupId>  
+	            <artifactId>yuicompressor-maven-plugin</artifactId>  
+	            <version>1.5.1</version>  
+	            <executions>
+	                <execution>
+	                	<phase>prepare-package</phase> 
+	                    <goals>  
+	                        <goal>compress</goal>  
+	                    </goals>  
+	                </execution>  
+	            </executions>  
+	            <configuration>    
+                    <!-- 读取js,css文件采用UTF-8编码默认就是utf-8的 -->    
+                    <encoding>UTF-8</encoding>    
+                    <!-- 不显示js可能的错误 -->    
+                    <jswarn>false</jswarn>    
+                    <!-- 若存在已压缩的文件，会先对比源文件是否有改动  有改动便压缩，无改动就不压缩 -->    
+                    <force>false</force>    
+                    <!-- 在指定的列号后插入新行 -->    
+                    <linebreakpos>-1</linebreakpos>    
+                    <!-- 压缩之前先执行聚合文件操作 -->    
+                    <preProcessAggregates>true</preProcessAggregates>    
+                    <!-- 压缩后保存文件后缀 无后缀(如果你不想保持原始和想覆盖它选项“nosuffix”设置为“真”) -->    
+                    <nosuffix>true</nosuffix>    
+                    <!-- 源目录，即需压缩的根目录 -->    
+                    <sourceDirectory>src/main/webapp</sourceDirectory>  
+                    <!-- 压缩js和css文件 -->    
+                    <includes>    
+                        <include>static/js/common/**/*.js</include>    
+                        <include>static/js/framework/**/*.js</include>    
+                        <include>static/css/framework/**/*.css</include>    
+                        <include>static/css/pages/**/*.css</include>    
+                    </includes>
+                </configuration>
+	        </plugin>		
+		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<useCache>false</useCache>
+					<attachClasses>true</attachClasses>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+					<warSourceIncludes>**</warSourceIncludes>
+					<warSourceExcludes>static/js/common/**/*.js,static/js/framework/**/*.js,static/css/framework/**/*.css,static/css/pages/**/*.css</warSourceExcludes>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+	        <resource>
+	            <directory>src/main/resources</directory>   
+	            <excludes>  
+	            	<!-- 项目打包时过滤掉数据库配置
+	            	<exclude>application.development.properties</exclude>
+	            	<exclude>application.properties</exclude>  -->
+	            	<!-- 项目打包时过滤掉自动任务配置，各项目中需要覆盖启用 -->  
+	            </excludes>
+	            <filtering>true</filtering>        
+	        </resource>
+	        <resource>
+	        <directory>src/main/java</directory>
+			<excludes>
+			<exclude>**/*.java</exclude>
+			</excludes>
+			</resource>
+    	</resources>
+	    <finalName>preregistration</finalName>
+	</build>
+</project>
