@@ -11,12 +11,12 @@
  	<script type="text/javascript" src="<%=path%>/static/js/system/register.js"></script>
 </head>
 <body>
-  <div align="center" style="font-size:30px;padding: 10px;">
+  <div align="center" style="font-size:24px;padding: 40px;">
 	  <h1>淮上实验小学2018年秋季招生新生报名表</h1>
-	  <h2 style="font-size:15px;padding: 10px;color:red">注意：填写报名表格后，请下载报名表PDF，如若忘记，重新输入正确格式的身份证号后，即可下载.</h1>
+	  <h2 style="font-size:14px;padding: 15px;color:red">注意：填写报名表格后，请下载报名表PDF，如若忘记，重新输入正确格式的身份证号后，即可下载.</h1>
   </div>
   <div align="center">
-	<div id="dd" class="easyui-dialog" title="报名信息填写" style="width:680px;height:630px;top:100px;"
+	<div id="dd" class="easyui-dialog" title="报名信息填写" style="width:680px;height:630px;top:150px;"
 		data-options="iconCls:'icon-save',buttons:'#bb',resizable:true,modal:true,closable: false,">   
 	   <sf:form modelAttribute="sysPreRegister" id="registerForm" enctype="multipart/form-data" >
            <fieldset>
@@ -40,9 +40,9 @@
 					 	<td >
 					 		<sf:input path="birthDate" type="text" editable="fasle" cssClass="easyui-datebox" data-options="required:'true'" />
 					    </td>
-					    <td class="normalForm-td-label required">身份证号码: </td>
+					    <td class="normalForm-td-label required">学生身份证号: </td>
 					 	<td >
-					 		<sf:input  path="studentIdentity" cssClass="easyui-textbox" data-options="required:'true'" />
+					 		<sf:input  path="studentIdentity" cssClass="easyui-textbox" data-options="required:'true',validType:'idCard',prompt:'18位，包含字母及数字'" />
 					    </td>
 					 </tr>
 					 <tr>
@@ -56,7 +56,7 @@
 					    </td>
 					 </tr>
 					<tr>
-					  	<td class="normalForm-td-label required">身份证号码: </td>
+					  	<td class="normalForm-td-label required">父亲身份证号: </td>
 					 	<td >
 					 		<sf:input  path="fatherIdentity" cssClass="easyui-textbox" data-options="required:'true',validType:'idCard',prompt:'18位，包含字母及数字'" />
 					    </td>
@@ -70,7 +70,7 @@
 					 	<td >
 					 		<sf:input  path="matherContactInfo" cssClass="easyui-textbox" data-options="required:'true', validType:'phoneRex'" />
 					    </td>
-					    <td class="normalForm-td-label required">身份证号码: </td>
+					    <td class="normalForm-td-label required">母亲身份证号: </td>
 					 	<td >
 					 		<sf:input  path="matherIdentity" cssClass="easyui-textbox" data-options="required:'true', validType:'idCard',prompt:'18位，包含字母及数字'" />
 					    </td>
@@ -118,7 +118,7 @@
 					 <tr>
 					 	<td class="normalForm-td-label required">监护人&学生居住地址: </td>
 					 	<td colspan="3">
-					 		<sf:input  style="width:86%" path="domicileAddress" prompt="输入楼号、单元、室 （此文字填写后消失）" cssClass="easyui-textbox" data-options="required:'true', validType:{length:[0,50]}" />
+					 		<sf:input  style="width:90%" path="domicileAddress" prompt="输入楼号、单元、室 （此文字填写后消失）" cssClass="easyui-textbox" data-options="required:'true', validType:{length:[0,50]}" />
 					    </td>
 					 </tr>
 					 <tr>
@@ -145,19 +145,19 @@
 					    </td>
 					 </tr>
 					 <tr>
-					    <td class="normalForm-td-label">上传学生头像 : </td>
+					    <td class="normalForm-td-label required">上传学生头像 : </td>
 					 	<td>
 					 		<div id="img1" style="width:200px; height:200px;background-color:#efeffb">
 								<img id="img2"  width="200px" height="200px" >
 							</div>
-							<sf:input path="studentFace" name="studentFace" class="easyui-filebox" data-options="onChange:changeStuFace,width:200,buttonText:'上传头像',accept:'image/*'"  />
+							<sf:input path="studentFace" name="studentFace" class="easyui-filebox" data-options="onChange:changeStuFace,width:200,required:true,buttonText:'头像',accept:'image/*',prompt:'最大支持3M的图片'"  />
 						</td>
 						<td class="normalForm-td-label required">上传合同&户口 : </td>
 					 	<td >
 					 		<div id="img3" style="width:200px; height:200px;background-color:#efeffb">
 								<img id="img4" width="200px" height="200px" >
 							</div>
-							<sf:input path="propertyFile" name="propertyFile" class="easyui-filebox" data-options="onChange:changeProFile,width:200,required:true,buttonText:'上传合同&户口',accept:'image/*'"  />
+							<sf:input path="propertyFile" name="propertyFile" class="easyui-filebox" data-options="onChange:changeProFile,width:200,required:true,buttonText:'合同&户口',accept:'image/*',prompt:'最大支持3M的图片'"  />
 						</td>
 					 </tr>
 				</table>

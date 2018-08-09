@@ -11,7 +11,7 @@ $.extend($.fn.validatebox.defaults.rules, {
     },
     phoneRex: {
         validator: function(value){
-        	var reg =/^0{0,1}(13[0-9]|15[0-9]|18[0-9])[0-9]{8}$/;
+        	 var reg =/^0{0,1}(13[0-9]|15[0-9]|17[0-9]|18[0-9]|19[0-9])[0-9]{8}$/;
         	 if(value == ""){
         		 return false;
         	 } else if(isNaN(value)||(value.length != 11)) {

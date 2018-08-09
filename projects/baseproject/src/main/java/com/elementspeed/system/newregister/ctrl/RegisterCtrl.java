@@ -75,7 +75,7 @@ public class RegisterCtrl extends BaseCtrl {
 			try {
 				String reg = "(?i).+?\\.(jpg|jpeg|png|JPG|JPEG|PNG)";
 				if(!sysPreRegister.getStudentFace().getOriginalFilename().matches(reg)) {
-					throw new RuntimeException("附件上传失败, 只支持以下格式附件：pdf、jpeg、png、jpg");
+					throw new RuntimeException("附件上传失败, 只支持以下格式附件：jpeg、png、jpg");
 				}
 				SRMFile studentFace = registrationService.saveFile(sysPreRegister.getStudentFace().getInputStream(), sysPreRegister.getStudentFace().getOriginalFilename());
 				sysPreRegister.setStudentFaceName(studentFace.getOriginalFilename());
@@ -92,7 +92,7 @@ public class RegisterCtrl extends BaseCtrl {
 			try {
 				String reg = "(?i).+?\\.(jpg|jpeg|png|JPG|JPEG|PNG)";
 				if(!sysPreRegister.getPropertyFile().getOriginalFilename().matches(reg)) {
-					throw new RuntimeException("附件上传失败, 只支持以下格式附件：pdf、jpeg、png、jpg");
+					throw new RuntimeException("附件上传失败, 只支持以下格式附件：jpeg、png、jpg");
 				}
 				SRMFile propertyFile = registrationService.saveFile(sysPreRegister.getPropertyFile().getInputStream(), sysPreRegister.getPropertyFile().getOriginalFilename());
 				sysPreRegister.setPropertyFileName(propertyFile.getOriginalFilename());

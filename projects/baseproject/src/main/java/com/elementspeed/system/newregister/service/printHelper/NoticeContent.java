@@ -21,11 +21,11 @@ public class NoticeContent {
 	} 
 	
 	final static public String getNotice2() {
-		return "           取消分配资格，待招生结束后，按调剂生处理或不予安排处理";
+		return "           取消报名资格";
 	} 
 	
 	final static public String getNotice3() {
-		return "    2、请提前准备好户口本、房产证等证件，便于查看、填写相关信息。";
+		return "    2、报名当天请家长携带户口本原件及首页和孩子页复印件，出身证明原件及复印件，购房合同原件及复印件，接种证明原件。";
 	}
 	
 	final static public String getNotice4() {

@@ -24,7 +24,6 @@
 
 <link rel="stylesheet" type="text/css" id="themeLink" href="<%=path%>/static/js/jquery-easyui-1.4.5/themes/black/<%=skin %>/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/js/jquery-easyui-1.4.5/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="<%=path%>/static/js/thirdplugin/htmleditor/jquery.cleditor.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/js/thirdplugin/message/message.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/framework/<%=skin%>/common.css">
 <link href="<%=path%>/static/css/pages/css/base.css" rel="stylesheet">
@@ -64,8 +63,6 @@
 <script type="text/javascript" src="<%=path%>/static/js/jquery-easyui-1.4.5/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/thirdplugin/jquery.form2json.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/thirdplugin/jquery.form.js"></script>
-<script type="text/javascript" src="<%=path%>/static/js/thirdplugin/htmleditor/jquery.cleditor.min.js"></script>
-<script type="text/javascript" src="<%=path%>/static/js/kindeditor-4.1.10/kindeditor.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/thirdplugin/treeExtend.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/thirdplugin/DataGridExtend.js"></script>
 <script type="text/javascript" src="<%=path%>/static/js/thirdplugin/jquery.cookie.js"></script>
