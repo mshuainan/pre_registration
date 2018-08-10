@@ -16,7 +16,7 @@
 	  <h2 style="font-size:14px;padding: 15px;color:red">注意：填写报名表格后，请下载报名表PDF，如若忘记，重新输入正确格式的身份证号后，即可下载.</h1>
   </div>
   <div align="center">
-	<div id="dd" class="easyui-dialog" title="报名信息填写" style="width:680px;height:630px;top:150px;"
+	<div id="dd" class="easyui-dialog" title="报名信息填写" style="width:720px;height:630px;top:150px;"
 		data-options="iconCls:'icon-save',buttons:'#bb',resizable:true,modal:true,closable: false,">   
 	   <sf:form modelAttribute="sysPreRegister" id="registerForm" enctype="multipart/form-data" >
            <fieldset>
@@ -150,14 +150,15 @@
 					 		<div id="img1" style="width:200px; height:200px;background-color:#efeffb">
 								<img id="img2"  width="200px" height="200px" >
 							</div>
-							<sf:input path="studentFace" name="studentFace" class="easyui-filebox" data-options="onChange:changeStuFace,width:200,required:true,buttonText:'头像',accept:'image/*',prompt:'最大支持3M的图片'"  />
+							<sf:input path="studentFace" name="studentFace" class="easyui-filebox" data-options="onChange:changeStuFace,width:200,required:true,buttonText:'选择',accept:'image/*',prompt:'最大支持3M的图片'"  />
 						</td>
-						<td class="normalForm-td-label required">上传合同&户口 : </td>
+						<td group="domicileType1" class="normalForm-td-label required">上传户口本首页图片 : </td>
+						<td group="domicileType2" class="normalForm-td-label required">上传购房合同图片 : </td>
 					 	<td >
 					 		<div id="img3" style="width:200px; height:200px;background-color:#efeffb">
 								<img id="img4" width="200px" height="200px" >
 							</div>
-							<sf:input path="propertyFile" name="propertyFile" class="easyui-filebox" data-options="onChange:changeProFile,width:200,required:true,buttonText:'合同&户口',accept:'image/*',prompt:'最大支持3M的图片'"  />
+							<sf:input path="propertyFile" name="propertyFile" class="easyui-filebox" data-options="onChange:changeProFile,width:200,required:true,buttonText:'选择',accept:'image/*',prompt:'最大支持3M的图片'"  />
 						</td>
 					 </tr>
 				</table>

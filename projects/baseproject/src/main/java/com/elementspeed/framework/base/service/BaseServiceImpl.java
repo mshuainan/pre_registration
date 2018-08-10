@@ -304,7 +304,7 @@ public abstract class BaseServiceImpl implements BaseService {
 	
 	private static Integer getFileMaxSize(){
 		if(FILE_MAX_SIZE==null){
-			FILE_MAX_SIZE = Integer.parseInt(CommonPropertiesLoad.getValueByKey("file_upload_max", "5"));
+			FILE_MAX_SIZE = Integer.parseInt(CommonPropertiesLoad.getValueByKey("file_upload_max", "3"));
 		}
 		return FILE_MAX_SIZE;
 	}
