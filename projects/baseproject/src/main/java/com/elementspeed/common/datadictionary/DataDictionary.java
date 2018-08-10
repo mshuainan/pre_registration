@@ -1,11 +1,16 @@
 package com.elementspeed.common.datadictionary;
 
-
 /**
- * 系统公用状态数据字典, 各业务的私有数据字典可继承DataDictionary
- *
+ * @ClassName: DataDictionary
+ * @Description: TODO(系统公用状态数据字典, 各业务的私有数据字典可继承DataDictionary)
+ * @author masn
+ * @date 2018年8月10日 下午12:28:16
  */
 public class DataDictionary {
+	
+	/** 系统默认的人ID和名称 */
+	public static final String SYSTEM_USER_ID = "-1";
+	public static final String SYSTEM_USER_NAME = "system";
 	
 	public enum Status {
 		/**

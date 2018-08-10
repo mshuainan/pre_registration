@@ -50,7 +50,7 @@
 					 	<td >
 					 		<sf:input  path="fatherName" cssClass="easyui-textbox" data-options="required:'true', validType:{length:[0,10]}" />
 					    </td>
-					    <td class="normalForm-td-label required">联系方式: </td>
+					    <td class="normalForm-td-label required">父亲联系方式: </td>
 					 	<td >
 					 		<sf:input  path="fatherContactInfo" cssClass="easyui-textbox" data-options="required:'true', validType:'phoneRex'" />
 					    </td>
@@ -66,7 +66,7 @@
 					    </td>
 					 </tr>
 					 <tr>
-					    <td class="normalForm-td-label required">联系方式: </td>
+					    <td class="normalForm-td-label required">母亲联系方式: </td>
 					 	<td >
 					 		<sf:input  path="matherContactInfo" cssClass="easyui-textbox" data-options="required:'true', validType:'phoneRex'" />
 					    </td>
@@ -118,7 +118,7 @@
 					 <tr>
 					 	<td class="normalForm-td-label required">监护人&学生居住地址: </td>
 					 	<td colspan="3">
-					 		<sf:input  style="width:90%" path="domicileAddress" prompt="输入楼号、单元、室 （此文字填写后消失）" cssClass="easyui-textbox" data-options="required:'true', validType:{length:[0,50]}" />
+					 		<sf:input  style="width:96%" path="domicileAddress" prompt="输入楼号、单元、室 （此文字填写后消失）" cssClass="easyui-textbox" data-options="required:'true', validType:{length:[0,50]}" />
 					    </td>
 					 </tr>
 					 <tr>

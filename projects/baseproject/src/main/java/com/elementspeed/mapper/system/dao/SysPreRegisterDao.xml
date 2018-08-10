@@ -74,7 +74,7 @@
 				ORDER BY ${orderSql}
 			</when>
 			<otherwise>
-				ORDER BY PRE_ORDER_NO ASC
+				ORDER BY PRE_ORDER_NO DESC
 			</otherwise>
 		</choose>
   	</select>

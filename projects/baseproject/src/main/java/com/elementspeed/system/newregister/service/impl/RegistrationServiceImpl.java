@@ -2,6 +2,7 @@ package com.elementspeed.system.newregister.service.impl;
 
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,6 +13,8 @@ import com.elementspeed.common.datadictionary.DataDictionary.Status;
 import com.elementspeed.framework.base.controller.ExecuteResult;
 import com.elementspeed.framework.base.dao.PageResults;
 import com.elementspeed.framework.base.service.BaseServiceImpl;
+import com.elementspeed.framework.common.sn.generator.dto.SnGeneratorDto;
+import com.elementspeed.framework.common.sn.generator.service.impl.SnGeneratorService;
 import com.elementspeed.framework.common.util.BeanUtil;
 import com.elementspeed.framework.common.util.DateUtil;
 import com.elementspeed.framework.common.util.PdfUtil;
@@ -40,12 +43,12 @@ import com.itextpdf.text.pdf.PdfWriter;
  */
 @Service
 public class RegistrationServiceImpl extends BaseServiceImpl implements RegistrationService {
-	/** 报名单号前缀 */
-	private String orderNoPrefix  = "NO.";
 	@Resource
 	private SysPreRegisterDao sysPreRegisterDao;
 	@Resource
 	private SysDomicileService sysDomicileService;
+	@Resource
+	protected SnGeneratorService snGeneratorService;
 	
 	@Override
 	public ExecuteResult register(SysPreRegister sysPreRegister){
@@ -76,7 +79,10 @@ public class RegistrationServiceImpl extends BaseServiceImpl implements Registra
 				sysPreRegisterDao.update(oldStudent);
 			} else {
 				sysPreRegister.setCreateInfo();
-				sysPreRegister.setPreOrderNo(orderNoPrefix + DateUtil.convertDateToString(DateUtil.getNow(), DateUtil.DATE_FORMAT_YMDHS));
+				SnGeneratorDto sn = new SnGeneratorDto("PRE_REGISTER", "NO.",
+						DateUtil.convertDateToString(new Date(), DateUtil.DATE_FORMAT_YY), 9999);
+				sysPreRegister.setPreOrderNo(snGeneratorService.generate(sn));
+				//sysPreRegister.setPreOrderNo(orderNoPrefix + DateUtil.convertDateToString(DateUtil.getNow(), DateUtil.DATE_FORMAT_YMDHS));
 				SysDomicile sysDomicile = sysDomicileService.findById(
 						StringUtil.isEmpty(sysPreRegister.getDomicileId1()) ? sysPreRegister.getDomicileId2() :sysPreRegister.getDomicileId1());
 				sysPreRegister.setDomicileId(sysDomicile.getId());

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 序列号dao -->
+<mapper namespace="com.elementspeed.mapper.system.dao.SysSeriaNoDao">
+	<resultMap id="snMap" type="com.elementspeed.mapper.system.entity.SysSeriaNo">
+	    <id column="PID" property="id" />
+	    <result column="TABLE_NAME" property="tableName" />
+	    <result column="BEGIN_DATE" property="beginDate" />
+	    <result column="SERIAL_NO" property="serialNo" />
+	    
+	    <result column="CREATE_USER_ID" property="createUserId" />
+	    <result column="CREATE_TIME" property="createTime" />
+	    <result column="LAST_MODIFY_USER_ID" property="lastModifyUserId" />
+	    <result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+	    <result column="DELETE_FLAG" property="deleteFlag" />
+	</resultMap>
+
+	<!-- 获取流水号 -->
+	<select id="getSn" resultMap="snMap">
+		 SELECT * FROM SYS_SERIAL_NO 
+		 	WHERE  DELETE_FLAG = 0 AND UPPER(TABLE_NAME) = UPPER(#{tableName}) limit 1
+	</select>
+	
+	<!-- 流水号自增 -->
+	<update id="increment" parameterType="string">
+		UPDATE SYS_SERIAL_NO SET SERIAL_NO = SERIAL_NO + 1 WHERE PID = #{id}
+	</update>
+	
+	<!-- 新增业务序列  -->
+	<insert id="create" parameterType="com.elementspeed.mapper.system.entity.SysSeriaNo">
+		INSERT INTO SYS_SERIAL_NO(
+			PID, TABLE_NAME, BEGIN_DATE, SERIAL_NO,
+			CREATE_USER_ID, CREATE_TIME, LAST_MODIFY_USER_ID, LAST_MODIFY_TIME, DELETE_FLAG
+		)
+  		VALUES (
+  			#{id, jdbcType=VARCHAR}, #{tableName, jdbcType=VARCHAR}, #{beginDate, jdbcType=VARCHAR}, #{serialNo, jdbcType=DECIMAL}, 
+  			#{createUserId, jdbcType=VARCHAR}, #{createTime, jdbcType=TIMESTAMP}, #{lastModifyUserId, jdbcType=VARCHAR}, #{lastModifyTime, jdbcType=TIMESTAMP}, 0
+  		)
+	</insert>
+	
+	<update id="update" parameterType="com.elementspeed.mapper.system.entity.SysSeriaNo">
+		UPDATE SYS_SERIAL_NO SET 
+			SERIAL_NO = #{serialNo, jdbcType=DECIMAL},
+			BEGIN_DATE = #{beginDate, jdbcType=VARCHAR},
+			LAST_MODIFY_USER_ID = #{lastModifyUserId, jdbcType=VARCHAR},
+  			LAST_MODIFY_TIME = #{lastModifyTime, jdbcType=TIMESTAMP}
+		WHERE PID = #{id}
+	</update>
+</mapper>
