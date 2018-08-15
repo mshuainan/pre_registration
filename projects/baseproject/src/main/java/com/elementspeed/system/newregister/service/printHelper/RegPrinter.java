@@ -132,12 +132,12 @@ public class RegPrinter extends PdfPrinter {
 		cell3_1.setFixedHeight(45);
 		PdfPCell cell3_2 = new PdfPCell(new Paragraph(preRegister.getFatherName(), font));
 		cell3_2.setVerticalAlignment(Element.ALIGN_MIDDLE);
-		PdfPCell cell3_3 = new PdfPCell(new Paragraph("联系方式:", font));
+		PdfPCell cell3_3 = new PdfPCell(new Paragraph("父亲联系方式:", font));
 		cell3_3.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		PdfPCell cell3_4 = new PdfPCell(new Paragraph(preRegister.getFatherContactInfo(), font));
 		cell3_4.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		cell3_4.setColspan(2);
-		PdfPCell cell3_5 = new PdfPCell(new Paragraph("身份证号码:", font));
+		PdfPCell cell3_5 = new PdfPCell(new Paragraph("父亲身份证号码:", font));
 		cell3_5.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		PdfPCell cell3_6 = new PdfPCell(new Paragraph(preRegister.getFatherIdentity(), font));
 		cell3_6.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -160,16 +160,16 @@ public class RegPrinter extends PdfPrinter {
 		PdfPCell cell4_1 = new PdfPCell(new Paragraph("母亲姓名:", font));
 		cell4_1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		cell4_1.setFixedHeight(45);
-		PdfPCell cell4_2 = new PdfPCell(new Paragraph(preRegister.getFatherName(), font));
+		PdfPCell cell4_2 = new PdfPCell(new Paragraph(preRegister.getMatherName(), font));
 		cell4_2.setVerticalAlignment(Element.ALIGN_MIDDLE);
-		PdfPCell cell4_3 = new PdfPCell(new Paragraph("联系方式:", font));
+		PdfPCell cell4_3 = new PdfPCell(new Paragraph("母亲联系方式:", font));
 		cell4_3.setVerticalAlignment(Element.ALIGN_MIDDLE);
-		PdfPCell cell4_4 = new PdfPCell(new Paragraph(preRegister.getFatherContactInfo(), font));
+		PdfPCell cell4_4 = new PdfPCell(new Paragraph(preRegister.getMatherContactInfo(), font));
 		cell4_4.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		cell4_4.setColspan(2);
-		PdfPCell cell4_5 = new PdfPCell(new Paragraph("身份证号码:", font));
+		PdfPCell cell4_5 = new PdfPCell(new Paragraph("母亲身份证号码:", font));
 		cell4_5.setVerticalAlignment(Element.ALIGN_MIDDLE);
-		PdfPCell cell4_6 = new PdfPCell(new Paragraph(preRegister.getFatherIdentity(), font));
+		PdfPCell cell4_6 = new PdfPCell(new Paragraph(preRegister.getMatherIdentity(), font));
 		cell4_6.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		cell4_6.setColspan(2);
 		

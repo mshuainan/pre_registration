@@ -25,6 +25,8 @@ public interface SysSeriaNoDao {
 	 */
 	void increment(@Param("id") String id);
 	
+	void increment2(@Param("serialNo") String serialNo, @Param("id") String id);
+	
 	/**
 	 * 新增业务序列 
 	 * @param seriaNo

@@ -8,7 +8,6 @@
 	    <result column="TABLE_NAME" property="tableName" />
 	    <result column="BEGIN_DATE" property="beginDate" />
 	    <result column="SERIAL_NO" property="serialNo" />
-	    
 	    <result column="CREATE_USER_ID" property="createUserId" />
 	    <result column="CREATE_TIME" property="createTime" />
 	    <result column="LAST_MODIFY_USER_ID" property="lastModifyUserId" />
@@ -25,6 +24,11 @@
 	<!-- 流水号自增 -->
 	<update id="increment" parameterType="string">
 		UPDATE SYS_SERIAL_NO SET SERIAL_NO = SERIAL_NO + 1 WHERE PID = #{id}
+	</update>
+	
+	<!-- 流水号自增 -->
+	<update id="increment2" parameterType="string">
+		UPDATE SYS_SERIAL_NO SET SERIAL_NO = #{serialNo} WHERE PID = #{id}
 	</update>
 	
 	<!-- 新增业务序列  -->
